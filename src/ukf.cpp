@@ -10,7 +10,11 @@ using std::vector;
 /**
  * Initializes Unscented Kalman filter
  */
-UKF::UKF() {
+UKF::UKF() :
+  is_initialized_(false),
+  n_x_(5), // state dimention for CTRV model
+  lambda_(3 - n_x)
+{
   // if this is false, laser measurements will be ignored (except during init)
   use_laser_ = true;
 
@@ -18,10 +22,13 @@ UKF::UKF() {
   use_radar_ = true;
 
   // initial state vector
-  x_ = VectorXd(5);
+  x_ = VectorXd(n_x_);
 
   // initial covariance matrix
-  P_ = MatrixXd(5, 5);
+  P_ = MatrixXd(n_x_, n_x_);
+  
+  // initial sigma points matrix
+  Xsig_pred_ = MatrixXd(n_x_, 2 * n_x_ + 1);
 
   // Process noise standard deviation longitudinal acceleration in m/s^2
   std_a_ = 30;
@@ -60,12 +67,35 @@ UKF::~UKF() {}
  * either radar or laser.
  */
 void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
-  /**
-  TODO:
-
-  Complete this function! Make sure you switch between lidar and radar
-  measurements.
-  */
+  if (!is_initialized_) {
+    if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
+      /**
+       Initialize state.
+       */
+      x_(0) = measurement_pack.raw_measurements_(0);
+      x_(1) = measurement_pack.raw_measurements_(1);
+      x_(2) = 0;
+      x_(3) = 0;
+    }
+    else if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
+      /**
+       Convert radar from polar to cartesian coordinates and initialize state.
+       */
+      double rho     = measurement_pack.raw_measurements_(0);
+      double phi    = measurement_pack.raw_measurements_(1);
+      double rho_dot = measurement_pack.raw_measurements_(2);
+      
+      x_(0) = rho     * cos(phi);
+      x_(1) = rho     * sin(phi);
+      x_(2) = rho_dot * cos(phi);
+      x_(3) = rho_dot * sin(phi);
+    }
+    
+    previous_timestamp_ = measurement_pack.timestamp_;
+    
+    // done initializing, no need to predict or update
+    is_initialized_ = true;
+    return;
 }
 
 /**
