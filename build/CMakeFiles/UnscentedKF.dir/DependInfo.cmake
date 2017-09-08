@@ -4,16 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/jaxanc/Documents/GitHub/CarND-Unscented-Kalman-Filter-Project/src/main.cpp" "/Users/jaxanc/Documents/GitHub/CarND-Unscented-Kalman-Filter-Project/build/CMakeFiles/UnscentedKF.dir/src/main.cpp.o"
-  "/Users/jaxanc/Documents/GitHub/CarND-Unscented-Kalman-Filter-Project/src/tools.cpp" "/Users/jaxanc/Documents/GitHub/CarND-Unscented-Kalman-Filter-Project/build/CMakeFiles/UnscentedKF.dir/src/tools.cpp.o"
-  "/Users/jaxanc/Documents/GitHub/CarND-Unscented-Kalman-Filter-Project/src/ukf.cpp" "/Users/jaxanc/Documents/GitHub/CarND-Unscented-Kalman-Filter-Project/build/CMakeFiles/UnscentedKF.dir/src/ukf.cpp.o"
+  "/home/liud/Develop/CarND-Unscented-Kalman-Filter-Project/src/main.cpp" "/home/liud/Develop/CarND-Unscented-Kalman-Filter-Project/build/CMakeFiles/UnscentedKF.dir/src/main.cpp.o"
+  "/home/liud/Develop/CarND-Unscented-Kalman-Filter-Project/src/tools.cpp" "/home/liud/Develop/CarND-Unscented-Kalman-Filter-Project/build/CMakeFiles/UnscentedKF.dir/src/tools.cpp.o"
+  "/home/liud/Develop/CarND-Unscented-Kalman-Filter-Project/src/ukf.cpp" "/home/liud/Develop/CarND-Unscented-Kalman-Filter-Project/build/CMakeFiles/UnscentedKF.dir/src/ukf.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "Clang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/usr/local/include"
-  "/usr/local/opt/openssl/include"
   )
 
 # Targets to which this target links.
